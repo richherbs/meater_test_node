@@ -1,4 +1,34 @@
-extends header
-
-block content
-  div.container
+doctype html
+html
+  head
+    title #{title}
+    link(rel='stylesheet', href='styles/normalize.css')
+    link(href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Manrope&display=swap", rel="stylesheet")
+    link(rel='stylesheet', href='styles/styles.css')
+    script(src="scripts/script.js")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+  body
+    nav.main-nav
+        a(href="/")
+          img(src='../images/bread.png')
+        ul
+          li 
+            a(href="/") home
+          li 
+            a(href="/admin") admin  
+    div.container
+      header.header
+          h1 #{title}
+      main
+        form
+          label(for='name') Name
+          input.newsletter-data(type='text' name='name')
+          label(for='email') Email
+          input.newsletter-data(type='text' name='email')
+          label(for='message') Message
+          input.newsletter-data(type='text' name='message')
+          label(for='newsletterChoice') Newsletter Opt-In
+          input.newsletter-data(type='checkbox' name='newsletterChoice')
+          button(type='submit') Submit
+      foot
+        div.copyright ©Richard Herbert. 2020
