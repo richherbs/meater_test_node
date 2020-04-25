@@ -22,15 +22,15 @@ html
       main
         form
           label(for='name') Name
-          input.newsletter-data(type='text' name='name')
+          input.newsletter-data(type='text' name='name' required)
           label(for='email') Email
-          input.newsletter-data(type='email' name='email')
+          input.newsletter-data(type='email' name='email' required)
           label(for='message') Message
           input.newsletter-data(type='text' name='message')
           label(for='newsletterChoice') Newsletter Opt-In
           input.newsletter-data(type='checkbox' name='newsletterChoice')
           label(for='testQuestion') A panda is black and?
-          input.newsletter-data(type='text' name='testQuestion')
+          input.newsletter-data(type='text' name='testQuestion' required)
           input.newsletter-data.honey-pot(type='text' name='honeyPot')
           button.submit(type='submit') Submit
     div.footer

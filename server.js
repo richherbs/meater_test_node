@@ -17,9 +17,19 @@ const readFiles = (aDirectory) => {
  * @param aString - an HTMLElement
  * @param aRegex 
  */
-function checkRegex(aString, aRegex) {
-  return aRegex.test(aString)
+const checkRegex = (anEnquiry, aRegex) => {
+  let email = anEnquiry.email;
+  return aRegex.test(email)
 }
+
+const checkTestQuestion = (anEnquiry) => {
+  testQuestionAnswer = anEnquiry.testQuestion;
+  testQuestionAnswer.toLowerCase();
+  testQuestionAnswer.replace();
+  return testQuestionAnswer == 'white'
+}
+
+const checkHoneyPot = (anEnquiry) => anEnquiry.honeyPot == '';
 
 app.use(express.json());
 app.use(express.static(__dirname + '/dist'));
@@ -33,12 +43,16 @@ app.get('/', (req, res) => {
 app.post('/files', (req, res) => {
   let enquiry = req.body;
     if(checkRegex(enquiry.email, EMAILADDRESS)){
-      fs.appendFile(`files/enquiry_${req.body.time}`, JSON.stringify(enquiry), (err) => {
-        if(err) throw err;
-      });
-      res.send(true)
+      if(checkHoneyPot(enquiry) && checkTestQuestion(enquiry)){
+        fs.appendFile(`files/enquiry_${req.body.time}`, JSON.stringify(enquiry), (err) => {
+          if(err) throw err;
+        });
+        res.send('success')
+      } else {
+        res.send('bot')
+      }
     } else {
-      res.send(false)
+      res.send('email')
     }
 });
 

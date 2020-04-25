@@ -86,11 +86,14 @@ submit.addEventListener('click', function (e) {
             }
         });
         sendEnquiry(enquiryData_1).then(function (response) {
-            if (response) {
+            if (response == 'success') {
                 alert("Your message has been received.");
             }
+            else if (response == 'email') {
+                alert("Your email address was invalid. Please try again.");
+            }
             else {
-                alert("Your email address was invalid.");
+                alert("Your message failed bot validation. Please try again");
             }
         });
     }
