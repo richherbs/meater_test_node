@@ -20,14 +20,29 @@ html
       header.header
           h1 #{title}
       main
-        each message in messages
-            div
-                p #{message.time}
-                p #{message.name}
-                p #{message.email}
-                p #{message.message}
-                p #{message.newsLetterChoice}
-                br
+        table
+            tr
+                th Question
+                th Response
+            each inquiry in inquiries
+                tr
+                    td.question Time-Stamp: 
+                    td #{inquiry.time}
+                tr
+                    td.question Name: 
+                    td #{inquiry.name}
+                tr
+                    td.question Email Address: 
+                    td #{inquiry.email}
+                tr
+                    td.question Message: 
+                    td #{inquiry.message}
+                tr
+                    td.question Newsletter Signup: 
+                    td #{inquiry.newsLetterChoice}
+                tr
+                    td
+                    td
         
     div.footer
       div.copyright ©Richard Herbert. 2020
