@@ -1,9 +1,7 @@
 {
-    "files": [
-        "src/scripts/script.ts"
-    ],
-    "compilerOptions": {
-        "noImplicitAny": true,
-        "target": "es5"
-    }
+  "files": ["src/scripts/script.ts"],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "target": "es5"
+  }
 }

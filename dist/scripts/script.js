@@ -35,9 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-var submit = document.querySelector('.submit');
-var inputs = document.querySelectorAll('.newsletter-data');
-var warning = document.querySelector('.emailWarning');
+var submit = document.querySelector(".submit");
+var inputs = document.querySelectorAll(".newsletter-data");
+var warning = document.querySelector(".emailWarning");
 var EMAILADDRESS = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 /**
  * Pass in an enquiry object and send to the server using a promise based function
@@ -47,10 +47,10 @@ var sendEnquiry = function (anEnquiryObject) { return __awaiter(_this, void 0, v
     var response;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch('/files', {
-                    method: 'POST',
+            case 0: return [4 /*yield*/, fetch("/files", {
+                    method: "POST",
                     headers: {
-                        'Content-Type': 'application/json',
+                        "Content-Type": "application/json",
                     },
                     body: JSON.stringify(anEnquiryObject),
                 })];
@@ -68,28 +68,28 @@ var sendEnquiry = function (anEnquiryObject) { return __awaiter(_this, void 0, v
 function checkRegex(anElement, aRegex) {
     return aRegex.test(anElement.value);
 }
-submit.addEventListener('click', function (e) {
+submit.addEventListener("click", function (e) {
     if (checkRegex(inputs[1], EMAILADDRESS)) {
         var enquiryData_1 = {
-            name: '',
-            email: '',
-            message: '',
+            name: "",
+            email: "",
+            message: "",
             newsletterChoice: false,
-            time: Date.now()
+            time: Date.now(),
         };
         inputs.forEach(function (input) {
-            if (input.type != 'checkbox') {
-                enquiryData_1[input.name] = input.value;
+            if (input.type != "checkbox") {
+                enquiryData_1[input.name] = (input).value;
             }
             else {
-                enquiryData_1[input.name] = input.checked;
+                enquiryData_1[input.name] = (input).checked;
             }
         });
         sendEnquiry(enquiryData_1).then(function (response) {
-            if (response == 'success') {
+            if (response == "success") {
                 alert("Your message has been received.");
             }
-            else if (response == 'email') {
+            else if (response == "email") {
                 alert("Your email address was invalid. Please try again.");
             }
             else {

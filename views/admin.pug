@@ -8,40 +8,40 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
     nav.main-nav
-        a.logo(href="/")
-          img(src='../images/bread.png')
-        ul
-          li 
-            a(href="/") Home
-          li 
-            a(href="/admin") Admin  
+      a.logo(href="/")
+        img(src='../images/bread.png')
+      ul
+        li 
+          a(href="/") Home
+        li 
+          a(href="/admin") Admin  
     div.container
       header.header
-          h1 #{title}
+        h1 #{title}
       main
         each enquiry in enquiries
           table
-              tr
-                  th Question
-                  th Response
-              tr
-                  td.question Time-Stamp: 
-                  td #{enquiry.time}
-              tr
-                  td.question Name: 
-                  td #{enquiry.name}
-              tr
-                  td.question Email Address: 
-                  td #{enquiry.email}
-              tr
-                  td.question Message: 
-                  td #{enquiry.message}
-              tr
-                  td.question Newsletter Signup: 
-                  if enquiry.newsletterChoice
-                    td Yes Please
-                  else
-                    td No Thank You
+            tr
+              th Question
+              th Response
+            tr
+              td.question Time-Stamp: 
+              td #{enquiry.time}
+            tr
+              td.question Name: 
+              td #{enquiry.name}
+            tr
+              td.question Email Address: 
+              td #{enquiry.email}
+            tr
+              td.question Message: 
+              td #{enquiry.message}
+            tr
+              td.question Newsletter Signup: 
+              if enquiry.newsletterChoice
+                td Yes Please
+              else
+                td No Thank You
           br
     div.footer
       div.copyright ©Richard Herbert. 2020

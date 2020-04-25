@@ -1,47 +1,60 @@
-main{
+main {
     background-color: $form-colour;
     padding: 1rem;
     border: 1px solid black;
     border-radius: 10px;
     margin-bottom: 6rem;
-    table{
+
+    table {
         margin: auto;
         border: 1px solid black;
-        tr{
-            th{
+
+        tr {
+            th {
                 text-align: left;
                 font-size: 2rem;
                 font-family: $title-font;
             }
-            th, td{
+
+            th,
+            td {
                 padding: 0.5rem 2rem;
                 border: 1px solid black;
                 background-color: white;
             }
-            .question{
+
+            .question {
                 font-size: 1.5rem;
             }
         }
     }
-    form{
-        label, input, button{
+
+    form {
+
+        label,
+        input,
+        button {
             display: block;
             margin: auto;
         }
-        label{
+
+        label {
             width: 95%;
         }
-        input{
+
+        input {
             width: 95%;
             @include buttonAndInput;
             padding: 0.5rem;
             margin-top: 0.5rem;
             margin-bottom: 0.5rem;
         }
-        .honey-pot{
+
+        .honey-pot {
             display: none;
         }
-        button{
+
+        button {
             padding: 0.5rem 1rem;
             @include buttonAndInput;
             @include buttonHover;

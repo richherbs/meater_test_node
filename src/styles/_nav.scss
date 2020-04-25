@@ -1,4 +1,4 @@
-nav{
+nav {
     background-color: $back-colour;
     position: fixed;
     left: 0;
@@ -7,18 +7,23 @@ nav{
     width: 100%;
     display: flex;
     align-items: stretch;
-    .logo{
+
+    .logo {
         margin-left: 3rem;
-        img{
+
+        img {
             height: 100%;
         }
     }
-    ul{
+
+    ul {
         align-self: flex-end;
-        li{
+
+        li {
             text-decoration: none;
             display: inline-block;
-            a{
+
+            a {
                 font-family: $main-font;
                 color: black;
                 text-decoration: none;
