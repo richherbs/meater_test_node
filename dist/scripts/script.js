@@ -58,12 +58,13 @@ var sendEnquiry = function (anEnquiryObject) { return __awaiter(_this, void 0, v
     });
 }); };
 submit.addEventListener('click', function (e) {
-    e.preventDefault();
+    // e.preventDefault();
     var enquiryData = {
         name: '',
         email: '',
         message: '',
-        newsletterChoice: false
+        newsletterChoice: false,
+        time: Date.now()
     };
     inputs.forEach(function (input) {
         if (input.type != 'checkbox') {

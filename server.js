@@ -1,5 +1,16 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const app = express();
+
+const readFiles = (aDirectory) => {
+  let someFileNames = fs.readdirSync(aDirectory);
+  someFiles = [];
+  someFileNames.forEach((file) => {
+    someFiles.push(JSON.parse(fs.readFileSync(`files/${file}`)))
+  })
+  return someFiles
+}
 
 app.use(express.json());
 app.use(express.static(__dirname + '/dist'));
@@ -11,33 +22,20 @@ app.get('/', (req, res) => {
 });
 
 app.post('/files', (req, res) => {
-
-  res.send(req.body);
+  let enquiry = JSON.stringify(req.body);
+  fs.appendFile(`files/enquiry_${req.body.time}`, enquiry, (err) => {
+    if(err) throw err;
+    res.send(req.body);
+  });
 });
 
 app.get('/admin', (req, res) => {
-  res.render('admin', {
-    title: "Tasty Treats: Admin Page", 
-    enquiries: [
-      {time: 1500,
-      name: 'Richard Herbert',
-      email: 'rich@rich-herbert.com',
-      message: 'Hi I would like to order some bagels',
-      newsLetterChoice: true},
-      {time: 1500,
-      name: 'Ben Herbert',
-      email: 'ben@rich-herbert.com',
-      message: 'Hi I would like to order some bagels',
-      newsLetterChoice: false},
-      {time: 1500,
-      name: 'Will Herbert',
-      email: 'will@rich-herbert.com',
-      message: 'Hi I would like to order some bagels',
-      newsLetterChoice: true}
-    ]});
+  let filesObjectData = {title: "Tasty Treats: Admin Page"};
+  
+  filesObjectData.enquiries = readFiles('files/');
+
+  res.render('admin', filesObjectData);
 });
-
-
 
 const server = app.listen(7000, () => {
   console.log(`Express running → PORT ${server.address().port}`);

@@ -39,7 +39,10 @@ html
                     td #{enquiry.message}
                 tr
                     td.question Newsletter Signup: 
-                    td #{enquiry.newsLetterChoice}
+                    if enquiry.newsletterChoice
+                      td Yes Please
+                    else
+                      td No Thank You
                 tr
                     td
                     td

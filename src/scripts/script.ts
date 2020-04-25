@@ -3,6 +3,7 @@ interface Enquiry{
     email :string
     message: string
     newsletterChoice: Boolean
+    time: Date
 }
 
 let submit :Node = document.querySelector('.submit');
@@ -27,12 +28,13 @@ const sendEnquiry = async (anEnquiryObject:Enquiry) => {
     }
 
 submit.addEventListener('click', (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     let enquiryData :Enquiry = {
         name: '',
         email: '',
         message: '',
-        newsletterChoice: false
+        newsletterChoice: false,
+        time: Date.now()
     };
 
     inputs.forEach((input) => {
