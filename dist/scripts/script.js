@@ -4,6 +4,12 @@ submit.addEventListener('click', function (e) {
     e.preventDefault();
     var enquiryData = {};
     inputs.forEach(function (input) {
-        enquiryData[input.name] = input.value;
+        if (input.type != 'checkbox') {
+            enquiryData[input.name] = input.value;
+        }
+        else {
+            enquiryData[input.name] = input.checked;
+        }
     });
+    console.log(enquiryData);
 });

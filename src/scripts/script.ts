@@ -6,9 +6,11 @@ submit.addEventListener('click', (e) => {
     let enquiryData :any = {};
 
     inputs.forEach((input) => {
-        let inputHtmlElement = (<HTMLInputElement>input)
-
-        enquiryData[inputHtmlElement.name] = inputHtmlElement.nodeValue;
+        if ((<HTMLInputElement>input).type != 'checkbox'){
+            enquiryData[(<HTMLInputElement>input).name] = (<HTMLInputElement>input).value;
+        } else {
+            enquiryData[(<HTMLInputElement>input).name] = (<HTMLInputElement>input).checked;
+        }
     });
 
     console.log(enquiryData);
