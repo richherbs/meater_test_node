@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs');
-const path = require('path');
 const app = express();
+const EMAILADDRESS = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
 
 const readFiles = (aDirectory) => {
   let someFileNames = fs.readdirSync(aDirectory);
@@ -10,6 +10,15 @@ const readFiles = (aDirectory) => {
     someFiles.push(JSON.parse(fs.readFileSync(`files/${file}`)))
   })
   return someFiles
+}
+
+/**
+ * Returns true if a string matches a regular expression else false
+ * @param aString - an HTMLElement
+ * @param aRegex 
+ */
+function checkRegex(aString, aRegex) {
+  return aRegex.test(aString)
 }
 
 app.use(express.json());
@@ -22,11 +31,15 @@ app.get('/', (req, res) => {
 });
 
 app.post('/files', (req, res) => {
-  let enquiry = JSON.stringify(req.body);
-  fs.appendFile(`files/enquiry_${req.body.time}`, enquiry, (err) => {
-    if(err) throw err;
-    res.send(req.body);
-  });
+  let enquiry = req.body;
+    if(checkRegex(enquiry.email, EMAILADDRESS)){
+      fs.appendFile(`files/enquiry_${req.body.time}`, JSON.stringify(enquiry), (err) => {
+        if(err) throw err;
+      });
+      res.send(true)
+    } else {
+      res.send(false)
+    }
 });
 
 app.get('/admin', (req, res) => {

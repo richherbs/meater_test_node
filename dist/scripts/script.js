@@ -38,39 +38,37 @@ var _this = this;
 var submit = document.querySelector('.submit');
 var inputs = document.querySelectorAll('.newsletter-data');
 var warning = document.querySelector('.emailWarning');
-var LETTERSANDSPACES = /^[A-Za-z\s]+$/;
 var EMAILADDRESS = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 /**
  * Pass in an enquiry object and send to the server using a promise based function
  * @param anEnquiryObject - an enquiry object which follows the enquiry interface
  */
 var sendEnquiry = function (anEnquiryObject) { return __awaiter(_this, void 0, void 0, function () {
+    var response;
     return __generator(this, function (_a) {
-        fetch('/files', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(anEnquiryObject),
-        }).then((function (response) {
-            return response.json();
-        })).then(function (data) {
-            console.log(data);
-        });
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, fetch('/files', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(anEnquiryObject),
+                })];
+            case 1:
+                response = _a.sent();
+                return [2 /*return*/, response];
+        }
     });
 }); };
 /**
  * Returns true if an element matches a regular expression else false
  * @param anElement - an HTMLElement
- * @param aRegex
+ * @param aRegex - regular expression
  */
 function checkRegex(anElement, aRegex) {
     return aRegex.test(anElement.value);
 }
 submit.addEventListener('click', function (e) {
-    console.log(inputs[1].value);
-    console.log(checkRegex(inputs[1], EMAILADDRESS));
     if (checkRegex(inputs[1], EMAILADDRESS)) {
         var enquiryData_1 = {
             name: '',
@@ -87,7 +85,14 @@ submit.addEventListener('click', function (e) {
                 enquiryData_1[input.name] = input.checked;
             }
         });
-        sendEnquiry(enquiryData_1);
+        sendEnquiry(enquiryData_1).then(function (response) {
+            if (response) {
+                alert("Your message has been received.");
+            }
+            else {
+                alert("Your email address was invalid.");
+            }
+        });
     }
     else {
         alert("Please make sure your email address is valid.");

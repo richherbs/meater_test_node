@@ -5,7 +5,6 @@ html
     link(rel='stylesheet', href='styles/normalize.css')
     link(href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Manrope&display=swap", rel="stylesheet")
     link(rel='stylesheet', href='styles/styles.css')
-    script(src="scripts/script.js")
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
     nav.main-nav
@@ -20,32 +19,29 @@ html
       header.header
           h1 #{title}
       main
-        table
-            tr
-                th Question
-                th Response
-            each enquiry in enquiries
-                tr
-                    td.question Time-Stamp: 
-                    td #{enquiry.time}
-                tr
-                    td.question Name: 
-                    td #{enquiry.name}
-                tr
-                    td.question Email Address: 
-                    td #{enquiry.email}
-                tr
-                    td.question Message: 
-                    td #{enquiry.message}
-                tr
-                    td.question Newsletter Signup: 
-                    if enquiry.newsletterChoice
-                      td Yes Please
-                    else
-                      td No Thank You
-                tr
-                    td
-                    td
-        
+        each enquiry in enquiries
+          table
+              tr
+                  th Question
+                  th Response
+              tr
+                  td.question Time-Stamp: 
+                  td #{enquiry.time}
+              tr
+                  td.question Name: 
+                  td #{enquiry.name}
+              tr
+                  td.question Email Address: 
+                  td #{enquiry.email}
+              tr
+                  td.question Message: 
+                  td #{enquiry.message}
+              tr
+                  td.question Newsletter Signup: 
+                  if enquiry.newsletterChoice
+                    td Yes Please
+                  else
+                    td No Thank You
+          br
     div.footer
       div.copyright ©Richard Herbert. 2020
