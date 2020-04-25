@@ -16,7 +16,7 @@ app.get('/files', (req, res) => {
 app.get('/admin', (req, res) => {
   res.render('admin', {
     title: "Tasty Treats: Admin Page", 
-    inquiries: [
+    enquiries: [
       {time: 1500,
       name: 'Richard Herbert',
       email: 'rich@rich-herbert.com',

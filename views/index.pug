@@ -5,7 +5,7 @@ html
     link(rel='stylesheet', href='styles/normalize.css')
     link(href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Manrope&display=swap", rel="stylesheet")
     link(rel='stylesheet', href='styles/styles.css')
-    script(src="scripts/script.js")
+    script(src="scripts/script.js" defer)
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
     nav.main-nav
@@ -29,6 +29,6 @@ html
           input.newsletter-data(type='text' name='message')
           label(for='newsletterChoice') Newsletter Opt-In
           input.newsletter-data(type='checkbox' name='newsletterChoice')
-          button(type='submit') Submit
+          button.submit(type='submit') Submit
     div.footer
       div.copyright ©Richard Herbert. 2020
