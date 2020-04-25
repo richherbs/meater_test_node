@@ -1,5 +1,11 @@
 @import 'variables';
 @import 'mixins';
 @import 'body';
-@import 'header';
 @import 'nav';
+@import 'container';
+@import 'header';
+@import 'main';
+@import 'foot';
+*{
+    box-sizing: border-box;
+}

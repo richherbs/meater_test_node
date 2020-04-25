@@ -9,12 +9,30 @@ app.get('/', (req, res) => {
   res.render('index', {title : "Tasty Treats: Newsletter Signup"});
 });
 
-app.get('/admin', (req, res) => {
-  res.render('index');
-});
-
 app.get('/files', (req, res) => {
   res.render('admin', {title: "Tasty Treats: Admin Page"});
+});
+
+app.get('/admin', (req, res) => {
+  res.render('admin', {
+    title: "Tasty Treats: Admin Page", 
+    messages: [
+      {time: 1500,
+      name: 'Richard Herbert',
+      email: 'rich@rich-herbert.com',
+      message: 'Hi I would like to order some bagels',
+      newsLetterChoice: true},
+      {time: 1500,
+      name: 'Ben Herbert',
+      email: 'ben@rich-herbert.com',
+      message: 'Hi I would like to order some bagels',
+      newsLetterChoice: false},
+      {time: 1500,
+      name: 'Will Herbert',
+      email: 'will@rich-herbert.com',
+      message: 'Hi I would like to order some bagels',
+      newsLetterChoice: true}
+    ]});
 });
 
 

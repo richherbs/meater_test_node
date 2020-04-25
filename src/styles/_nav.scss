@@ -1,16 +1,33 @@
 nav{
+    background-color: $back-colour;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 3rem;
     width: 100%;
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    img{
-        height: 1.5rem;
+    display: flex;
+    align-items: stretch;
+    .logo{
+        margin-left: 3rem;
+        img{
+            height: 100%;
+        }
     }
     ul{
+        align-self: flex-end;
         li{
             text-decoration: none;
             display: inline-block;
             a{
+                font-family: $main-font;
+                color: black;
                 text-decoration: none;
+                padding: 0.5rem 1rem;
+                margin-left: 6px;
+                margin-right: 2rem;
+                @include buttonAndInput;
+                @include buttonHover;
+                background-color: white;
             }
         }
     }

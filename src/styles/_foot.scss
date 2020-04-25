@@ -1,0 +1,13 @@
+.footer{
+    background-color: $foot-colour;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4rem;
+    color: white;
+    text-align: center;
+    .copyright{
+        margin-top: 1.5rem;
+    }
+}
