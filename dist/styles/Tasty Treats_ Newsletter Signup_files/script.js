@@ -90,7 +90,6 @@ submit.addEventListener('click', function (e) {
         sendEnquiry(enquiryData_1);
     }
     else {
-        alert("Please make sure your email address is valid.");
         e.preventDefault();
     }
 });
