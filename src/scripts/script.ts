@@ -13,17 +13,18 @@ let inputs :NodeList = document.querySelectorAll('.newsletter-data');
  * @param anEnquiryObject - an enquiry object which follows the enquiry interface
  */
 const sendEnquiry = async (anEnquiryObject:Enquiry) => {
-    const response = await fetch('/files', {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        credentials: 'same-origin', // include, *same-origin, omit
+    fetch('/files', {
+        method: 'POST', // or 'PUT'
         headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(anEnquiryObject) // body data type must match "Content-Type" header
-    });
-  return response.json(); // parses JSON response into native JavaScript objects
-}
+        body: JSON.stringify(anEnquiryObject),
+        }).then((response => {
+            return response.json()
+        })).then((data) => {
+            console.log(data)
+        });
+    }
 
 submit.addEventListener('click', (e) => {
     e.preventDefault();
@@ -41,6 +42,6 @@ submit.addEventListener('click', (e) => {
             enquiryData[(<HTMLInputElement>input).name] = (<HTMLInputElement>input).checked;
         }
     });
-
-    sendEnquiry(enquiryData).then((data) => console.log(data))
+    
+    sendEnquiry(enquiryData);
 })

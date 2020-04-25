@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 
+app.use(express.json());
 app.use(express.static(__dirname + '/dist'));
 
 app.set('view engine', 'pug');
@@ -9,8 +10,9 @@ app.get('/', (req, res) => {
   res.render('index', {title : "Tasty Treats: Newsletter Signup"});
 });
 
-app.get('/files', (req, res) => {
-  res.render('admin', {title: "Tasty Treats: Admin Page"});
+app.post('/files', (req, res) => {
+
+  res.send(req.body);
 });
 
 app.get('/admin', (req, res) => {

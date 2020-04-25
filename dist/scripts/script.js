@@ -42,22 +42,19 @@ var inputs = document.querySelectorAll('.newsletter-data');
  * @param anEnquiryObject - an enquiry object which follows the enquiry interface
  */
 var sendEnquiry = function (anEnquiryObject) { return __awaiter(_this, void 0, void 0, function () {
-    var response;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch('/files', {
-                    method: 'POST',
-                    credentials: 'same-origin',
-                    headers: {
-                        'Content-Type': 'application/json'
-                        // 'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: JSON.stringify(anEnquiryObject) // body data type must match "Content-Type" header
-                })];
-            case 1:
-                response = _a.sent();
-                return [2 /*return*/, response.json()]; // parses JSON response into native JavaScript objects
-        }
+        fetch('/files', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(anEnquiryObject),
+        }).then((function (response) {
+            return response.json();
+        })).then(function (data) {
+            console.log(data);
+        });
+        return [2 /*return*/];
     });
 }); };
 submit.addEventListener('click', function (e) {
@@ -76,5 +73,5 @@ submit.addEventListener('click', function (e) {
             enquiryData[input.name] = input.checked;
         }
     });
-    sendEnquiry(enquiryData).then(function (data) { return console.log(data); });
+    sendEnquiry(enquiryData);
 });
