@@ -23,7 +23,7 @@ const readFiles = (aDirectory) => {
  * @param {RegEx} aRegex
  */
 const checkRegex = (anEnquiry, aRegex) => {
-  let email = anEnquiry.email;
+  let email = sanitiseInput(anEnquiry.email);
   return aRegex.test(email);
 };
 
@@ -33,17 +33,28 @@ const checkRegex = (anEnquiry, aRegex) => {
  * @param {Enquiry} anEnquiry
  */
 const checkTestQuestion = (anEnquiry) => {
-  testQuestionAnswer = anEnquiry.testQuestion;
-  testQuestionAnswer.toLowerCase();
-  testQuestionAnswer.replace();
-  return testQuestionAnswer == "white";
+  let testQuestion = sanitiseInput(anEnquiry.testQuestion)
+  return testQuestion === "white";
 };
 
 /**
  * Return true if the honeyPot field is blank
  * @param {Object} anEnquiry
  */
-const checkHoneyPot = (anEnquiry) => anEnquiry.honeyPot == "";
+const checkHoneyPot = (anEnquiry) => {
+  return anEnquiry.honeyPot === "";
+}
+
+/**
+ * Take a string and return the result of removing white space
+ * and the characters all lower case
+ * @param {string} aString 
+ */
+const sanitiseInput = (aString) => {
+  let result = aString.toLowerCase()
+  result = result.replace(/\s/g, '')
+  return result
+}
 
 app.use(express.json());
 app.use(express.static(__dirname + "/dist"));
@@ -58,21 +69,26 @@ app.get("/", (req, res) => {
 
 app.post("/files", (req, res) => {
   let enquiry = req.body;
-  if (checkRegex(enquiry.email, EMAILADDRESS)) {
-    if (checkHoneyPot(enquiry) && checkTestQuestion(enquiry)) {
-      fs.appendFile(
-        `files/enquiry_${req.body.time}`,
-        JSON.stringify(enquiry),
-        (err) => {
-          if (err) throw err;
-        }
-      );
-      res.send("success");
+
+  if(checkRegex(enquiry, EMAILADDRESS)){
+    if(checkTestQuestion(enquiry)){
+      if(checkHoneyPot(enquiry)){
+        fs.appendFile(
+          `files/enquiry_${req.body.time}`,
+          JSON.stringify(enquiry),
+          (err) => {
+            if (err) throw err;
+          }
+        );
+        res.send('success')
+      } else {
+        res.send('honey')
+      }
     } else {
-      res.send("bot");
+      res.send('test')
     }
   } else {
-    res.send("email");
+    res.send('email')
   }
 });
 

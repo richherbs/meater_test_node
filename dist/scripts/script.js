@@ -56,7 +56,7 @@ var sendEnquiry = function (anEnquiryObject) { return __awaiter(_this, void 0, v
                 })];
             case 1:
                 response = _a.sent();
-                return [2 /*return*/, response];
+                return [2 /*return*/, response.text()];
         }
     });
 }); };
@@ -69,13 +69,15 @@ function checkRegex(anElement, aRegex) {
     return aRegex.test(anElement.value);
 }
 submit.addEventListener("click", function (e) {
-    if (checkRegex(inputs[1], EMAILADDRESS)) {
+    if (true) {
         var enquiryData_1 = {
             name: "",
             email: "",
             message: "",
             newsletterChoice: false,
             time: Date.now(),
+            testQuestion: '',
+            honeyPot: ''
         };
         inputs.forEach(function (input) {
             if (input.type != "checkbox") {
@@ -86,19 +88,19 @@ submit.addEventListener("click", function (e) {
             }
         });
         sendEnquiry(enquiryData_1).then(function (response) {
-            if (response == "success") {
-                alert("Your message has been received.");
+            if (response === 'success') {
+                alert('Thank you your enquiry was received.');
             }
-            else if (response == "email") {
-                alert("Your email address was invalid. Please try again.");
+            else if (response === 'honey' || response === 'test') {
+                alert('You failed bot validation please try again.');
             }
             else {
-                alert("Your message failed bot validation. Please try again");
+                alert('Your email is invalid please check and try again.');
             }
         });
     }
     else {
-        alert("Please make sure your email address is valid.");
         e.preventDefault();
+        alert("Please make sure your email address is valid.");
     }
 });
