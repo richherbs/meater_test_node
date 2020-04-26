@@ -62,3 +62,75 @@ main {
 
     }
 }
+
+@media only screen and (max-width: 768px){
+    main {
+        background-color: $form-colour;
+        padding: 0.5rem;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin-bottom: 6rem;
+    
+        table {
+            margin: auto;
+            border: 1px solid black;
+            font-size: 1rem;
+            tr {
+                th {
+                    text-align: left;
+                    font-size: 1rem;
+                    font-family: $title-font;
+                }
+    
+                th,
+                td {
+                    padding: 0.5rem 2rem;
+                    border: 1px solid black;
+                    background-color: white;
+                }
+
+                td{
+                    font-size: 0.5rem;
+
+                }
+    
+                .question {
+                    font-size: 0.75rem;
+                }
+            }
+        }
+    
+        form {
+    
+            label,
+            input,
+            button {
+                display: block;
+                margin: auto;
+            }
+    
+            label {
+                width: 95%;
+            }
+    
+            input {
+                width: 95%;
+                @include buttonAndInput;
+                padding: 0.5rem;
+                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+    
+            .honey-pot {
+                display: none;
+            }
+    
+            button {
+                padding: 0.5rem 1rem;
+                @include buttonAndInput;
+                @include buttonHover;
+            }
+    
+        }
+    }
+}
