@@ -69,7 +69,7 @@ function checkRegex(anElement, aRegex) {
     return aRegex.test(anElement.value);
 }
 submit.addEventListener("click", function (e) {
-    if (true) {
+    if (checkRegex(inputs[1], EMAILADDRESS)) {
         var enquiryData_1 = {
             name: "",
             email: "",

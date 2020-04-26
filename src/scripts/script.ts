@@ -39,7 +39,7 @@ function checkRegex(anElement: Node, aRegex: RegExp): Boolean {
 }
 
 submit.addEventListener("click", (e) => {
-  if (true) {
+  if (checkRegex(inputs[1], EMAILADDRESS)) {
     let enquiryData: Enquiry = {
       name: "",
       email: "",
