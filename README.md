@@ -12,30 +12,31 @@ two factor authentiation.
 Local setup
 
 Clone this Repo
+
 Run: - npm install - from the root of this project.
+
 Run: - npm start - DO NOT CLOSE THIS TAB OR TURN THE SERVER OFF
 
 Routes
 
 for local development use localhost:7000/ as your URL
 
-/user
+/
+
+GET
+
+Route to display the enquiry page
+
+/admin
+
+GET
+
+Route to display the admin page containing all enquiries
+
+/files
 
 POST
 
-Create new user.
-{"email":"example@email.com", "name":"Fred Smith", "time":"1800", "test_id":"1"}
-test_id is optional, will default to test id 1
-Time is optional, will default to 1800
-Returns user object.
-GET
-
-Get all registered users, including deleted ones.
-No request data
-Returns array of user objects.
-GET
-
-Find specific registered user.
-Send users email as a GET parameter using the key of email.
-Returns user object.
-/user/delete/{userID}
+Route to create a new enquiry file on the server. 
+Uses JSON in the format: {name: '', email: '', message: '', newsletterWanted: boolean, testQuestion: '', honeyPot: ''}
+Returns a success message.
