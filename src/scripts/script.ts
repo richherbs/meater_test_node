@@ -34,9 +34,9 @@ const sendEnquiry = async (anEnquiryObject: Enquiry) => {
  * @param anElement - an HTMLElement
  * @param aRegex - regular expression
  */
-function checkRegex(anElement: Node, aRegex: RegExp): Boolean {
+const checkRegex = (anElement: Node, aRegex: RegExp): Boolean => {
   return aRegex.test((<HTMLInputElement>anElement).value);
-}
+};
 
 submit.addEventListener("click", (e) => {
   if (checkRegex(inputs[1], EMAILADDRESS)) {
@@ -46,8 +46,8 @@ submit.addEventListener("click", (e) => {
       message: "",
       newsletterChoice: false,
       time: Date.now(),
-      testQuestion: '',
-      honeyPot: ''
+      testQuestion: "",
+      honeyPot: "",
     };
 
     inputs.forEach((input) => {
@@ -62,16 +62,16 @@ submit.addEventListener("click", (e) => {
       }
     });
     sendEnquiry(enquiryData).then((response) => {
-      if(response === 'success'){
-        alert('Thank you your enquiry was received.')
-      }else if(response === 'honey' || response === 'test'){
-        alert('You failed bot validation please try again.')
-      }else {
-        alert('Your email is invalid please check and try again.')
+      if (response === "success") {
+        alert("Thank you your enquiry was received.");
+      } else if (response === "honey" || response === "test") {
+        alert("You failed bot validation please try again.");
+      } else {
+        alert("Your email is invalid please check and try again.");
       }
     });
   } else {
-    e.preventDefault()
+    e.preventDefault();
     alert("Please make sure your email address is valid.");
   }
 });

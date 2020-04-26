@@ -65,9 +65,9 @@ var sendEnquiry = function (anEnquiryObject) { return __awaiter(_this, void 0, v
  * @param anElement - an HTMLElement
  * @param aRegex - regular expression
  */
-function checkRegex(anElement, aRegex) {
+var checkRegex = function (anElement, aRegex) {
     return aRegex.test(anElement.value);
-}
+};
 submit.addEventListener("click", function (e) {
     if (checkRegex(inputs[1], EMAILADDRESS)) {
         var enquiryData_1 = {
@@ -76,8 +76,8 @@ submit.addEventListener("click", function (e) {
             message: "",
             newsletterChoice: false,
             time: Date.now(),
-            testQuestion: '',
-            honeyPot: ''
+            testQuestion: "",
+            honeyPot: "",
         };
         inputs.forEach(function (input) {
             if (input.type != "checkbox") {
@@ -88,14 +88,14 @@ submit.addEventListener("click", function (e) {
             }
         });
         sendEnquiry(enquiryData_1).then(function (response) {
-            if (response === 'success') {
-                alert('Thank you your enquiry was received.');
+            if (response === "success") {
+                alert("Thank you your enquiry was received.");
             }
-            else if (response === 'honey' || response === 'test') {
-                alert('You failed bot validation please try again.');
+            else if (response === "honey" || response === "test") {
+                alert("You failed bot validation please try again.");
             }
             else {
-                alert('Your email is invalid please check and try again.');
+                alert("Your email is invalid please check and try again.");
             }
         });
     }

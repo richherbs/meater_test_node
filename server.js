@@ -10,7 +10,7 @@ const EMAILADDRESS = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$
  */
 const readFiles = (aDirectory) => {
   let someFileNames = fs.readdirSync(aDirectory);
-  someFiles = [];
+  let someFiles = [];
   someFileNames.forEach((file) => {
     someFiles.push(JSON.parse(fs.readFileSync(`files/${file}`)));
   });
@@ -33,7 +33,7 @@ const checkRegex = (anEnquiry, aRegex) => {
  * @param {Enquiry} anEnquiry
  */
 const checkTestQuestion = (anEnquiry) => {
-  let testQuestion = sanitiseInput(anEnquiry.testQuestion)
+  let testQuestion = sanitiseInput(anEnquiry.testQuestion);
   return testQuestion === "white";
 };
 
@@ -43,18 +43,18 @@ const checkTestQuestion = (anEnquiry) => {
  */
 const checkHoneyPot = (anEnquiry) => {
   return anEnquiry.honeyPot === "";
-}
+};
 
 /**
  * Take a string and return the result of removing white space
  * and the characters all lower case
- * @param {string} aString 
+ * @param {string} aString
  */
 const sanitiseInput = (aString) => {
-  let result = aString.toLowerCase()
-  result = result.replace(/\s/g, '')
-  return result
-}
+  let result = aString.toLowerCase();
+  result = result.replace(/\s/g, "");
+  return result;
+};
 
 app.use(express.json());
 app.use(express.static(__dirname + "/dist"));
@@ -70,9 +70,9 @@ app.get("/", (req, res) => {
 app.post("/files", (req, res) => {
   let enquiry = req.body;
 
-  if(checkRegex(enquiry, EMAILADDRESS)){
-    if(checkTestQuestion(enquiry)){
-      if(checkHoneyPot(enquiry)){
+  if (checkRegex(enquiry, EMAILADDRESS)) {
+    if (checkTestQuestion(enquiry)) {
+      if (checkHoneyPot(enquiry)) {
         fs.appendFile(
           `files/enquiry_${req.body.time}`,
           JSON.stringify(enquiry),
@@ -80,15 +80,15 @@ app.post("/files", (req, res) => {
             if (err) throw err;
           }
         );
-        res.send('success')
+        res.send("success");
       } else {
-        res.send('honey')
+        res.send("honey");
       }
     } else {
-      res.send('test')
+      res.send("test");
     }
   } else {
-    res.send('email')
+    res.send("email");
   }
 });
 
